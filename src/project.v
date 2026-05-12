@@ -21,20 +21,22 @@ module tt_um_chaotic_rng (
 
     // enable
     wire [3:0] rng_en;
-	assign rng_en = {3'b111, ui_in[7]};
+	assign rng_en = {3'b111, ena};
 
     // Programmable parameters
-	wire [3:0] Lx; // 4'b1011
-	wire [2:0] Ux; // 3'b100
-
+	wire [3:0] Lx; //4'b1011
 	wire [3:0] Ly; //4'b1100
-	wire [2:0] Uy; //3'b100
+	wire [3:0] Lz; //4'b1011
+	wire [2:0] Ux, Uy, Uz; // 3'b100
 
     assign Lx = ui_in[3:0];
-    assign Ux = ui_in[6:4];
+	assign Ly = ui_in[7:4];
+	assign Lz = uio_in[3:0];
 
-    assign Ly = uio_in[3:0];
-    assign Uy = uio_in[6:4];
+	// Fixed U parameters	
+	assign Ux = 3'b100;
+	assign Uy = 3'b100;
+	assign Uz = 3'b100;
 	
     rng_chaos_scroll u_rng_chaos_scroll (
         .clk(clk),
@@ -50,6 +52,9 @@ module tt_um_chaotic_rng (
 
         .Ly(Ly),
         .Uy(Uy),
+
+		.Lz(Lz),
+		.Uz(Uz),
 
         .x(x),
         .y(y),
@@ -93,17 +98,13 @@ module rng_chaos_scroll(
 	input [ 2:0] Ux,
 	input [ 3:0] Ly,                                                            
 	input [ 2:0] Uy,	
+	input [ 3:0] Lz,                                                            
+	input [ 2:0] Uz,
 	output reg [31:0] x, 
 	output reg [31:0] y, 
 	output reg [31:0] z
 );
 
-// Fixed Z parameters
-wire [3:0] Lz;
-wire [2:0] Uz;
-	
-assign Lz = 4'b1101;
-assign Uz = 3'b100;
 	
 // wires                                                                   
 wire [31:0] Fx, xn, xo;                                                       
