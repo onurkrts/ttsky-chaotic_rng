@@ -24,11 +24,11 @@ module tt_um_chaotic_rng (
 	assign rng_en = {3'b111, ui_in[7]};
 
     // Programmable parameters
-    wire [3:0] Lx;
-    wire [2:0] Ux;
+	wire [3:0] Lx; // 4'b1011
+	wire [2:0] Ux; // 3'b100
 
-    wire [3:0] Ly;
-    wire [2:0] Uy;
+	wire [3:0] Ly; //4'b1100
+	wire [2:0] Uy; //3'b100
 
     assign Lx = ui_in[3:0];
     assign Ux = ui_in[6:4];
@@ -40,7 +40,7 @@ module tt_um_chaotic_rng (
 	wire [3:0] Lz;
 	wire [2:0] Uz;
 	
-	assign Lz = 4'b1011;
+	assign Lz = 4'b1101;
 	assign Uz = 3'b100;
 	
     rng_chaos_scroll u_rng_chaos_scroll (
