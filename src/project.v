@@ -24,10 +24,9 @@ module tt_um_chaotic_rng (
     wire [3:0] Lx; //4'b1011
     wire [3:0] Ly; //4'b1100
     wire [3:0] Lz; //4'b1011
-    wire [2:0] Ux, Uy, Uz; // 3'b100
 
 	assign Lx = ui_in[7:4];
-	assign Ly = ui_in[3:0];
+	assign Ly = uio_in[3:0];
 	assign Lz = uio_in[7:4];
 
     rng_chaos_scroll u_rng_chaos_scroll (
