@@ -1,6 +1,6 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Double Scroll Chaotic RNG for TinyTapeout
+# Chaotic RNG for TinyTapeout
 
 A programmable hardware chaotic random number generator (RNG) implemented in Verilog for the TinyTapeout platform.
 
