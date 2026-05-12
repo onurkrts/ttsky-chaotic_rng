@@ -23,14 +23,14 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "Lx[0]"
-  ui[1]: "Lx[1]"
-  ui[2]: "Lx[2]"
-  ui[3]: "Lx[3]"
-  ui[4]: "Ux[0]"
-  ui[5]: "Ux[1]"
-  ui[6]: "Ux[2]"
-  ui[7]: "Enable"
+  ui[0]: "rng_en[0]"
+  ui[1]: "rng_en[1]"
+  ui[2]: "rng_en[2]"
+  ui[3]: "rng_en[3]"
+  ui[4]: "Lx[0]"
+  ui[5]: "Lx[1]"
+  ui[6]: "Lx[2]"
+  ui[7]: "Lx[3]"
 
   # Outputs
   uo[0]: "Random bit 0"
@@ -47,10 +47,10 @@ pinout:
   uio[1]: "Ly[1]"
   uio[2]: "Ly[2]"
   uio[3]: "Ly[3]"
-  uio[4]: "Uy[0]"
-  uio[5]: "Uy[1]"
-  uio[6]: "Uy[2]"
-  uio[7]: ""
+  uio[4]: "Lz[0]"
+  uio[5]: "Lz[1]"
+  uio[6]: "Lz[2]"
+  uio[7]: "Lz[3]"
 
 # Do not change!
 yaml_version: 6
