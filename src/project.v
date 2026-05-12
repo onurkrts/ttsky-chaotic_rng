@@ -23,6 +23,8 @@ module tt_um_chaotic_rng (
         .wire_x(x_out)
     );
 
+    wire _unused = ena;
+    
 endmodule
 
 module rng_chaos_scroll(
