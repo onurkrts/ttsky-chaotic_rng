@@ -1,6 +1,20 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
+# Double Scroll Chaotic RNG for TinyTapeout
+
+A programmable hardware chaotic random number generator (RNG) implemented in Verilog for the TinyTapeout platform.
+
+## Overview
+
+This project implements a 3-dimensional double-scroll chaotic system using fixed-point arithmetic and nonlinear feedback functions. The design generates chaotic dynamics through coupled state updates and programmable nonlinear transformations.
+
+The chaotic system consists of three internal 32-bit state variables:
+
+- `x`
+- `y`
+- `z`
+
+These states evolve every clock cycle according to nonlinear recursive equations. The generated chaotic behavior is used as an entropy source for random number generation.
 
 - [Read the documentation for project](docs/info.md)
 
