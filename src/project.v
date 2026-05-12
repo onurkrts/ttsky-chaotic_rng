@@ -55,13 +55,6 @@ module tt_um_chaotic_rng (
         .y(y),
         .z(z)
     );
-
-	// Fixed Z parameters
-	wire [3:0] Lz;
-	wire [2:0] Uz;
-	
-	assign Lz = 4'b1101;
-	assign Uz = 3'b100;
 	
     // RNG output
     assign uo_out = x[7:0] ;
@@ -100,13 +93,18 @@ module rng_chaos_scroll(
 	input [ 2:0] Ux,
 	input [ 3:0] Ly,                                                            
 	input [ 2:0] Uy,	
-	input [ 3:0] Lz,                                                            
-	input [ 2:0] Uz,	
 	output reg [31:0] x, 
 	output reg [31:0] y, 
 	output reg [31:0] z
 );
 
+// Fixed Z parameters
+wire [3:0] Lz;
+wire [2:0] Uz;
+	
+assign Lz = 4'b1101;
+assign Uz = 3'b100;
+	
 // wires                                                                   
 wire [31:0] Fx, xn, xo;                                                       
 wire [31:0] Fy, yn, yo;                                                       
