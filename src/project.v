@@ -12,9 +12,9 @@ module tt_um_chaotic_rng (
 );
 
     // RNG outputs
-    wire [31:0] x;
-    wire [31:0] y;
-    wire [31:0] z;
+	wire [7:0] x;
+	wire [7:0] y;
+	wire [7:0] z;
 
     // enable
     wire [3:0] rng_en;
@@ -35,17 +35,13 @@ module tt_um_chaotic_rng (
 		.rst_n(rst_n),
         .en(rng_en),
 
-        .x_init(32'h12345678),
-        .y_init(32'h87654321),
-        .z_init(32'hABCDEF12),
-
         .Lx(Lx),
         .Ly(Ly),
         .Lz(Lz),
 
-        .x(x),
-        .y(y),
-        .z(z)
+        .wire_x(x),
+        .wire_y(y),
+        .wire_z(z)
     );
 
     // RNG output
@@ -64,15 +60,6 @@ module tt_um_chaotic_rng (
     // uio used as INPUTS
     assign uio_oe = 8'b11111111;
 
-    // Unused signals
-    wire _unused = &{
-        uio_in[7:4],
-        x[31:8],
-        y[31:8],
-        z[31:8],
-        1'b0
-    };
-
 endmodule
 
 module rng_chaos_scroll(
@@ -85,11 +72,19 @@ module rng_chaos_scroll(
     input [3:0] Lx,
     input [3:0] Ly,
     input [3:0] Lz,
-    output reg [31:0] x,
-    output reg [31:0] y,
-    output reg [31:0] z
+	output [7:0] wire_x,
+	output [7:0] wire_y,
+	output [7:0] wire_z
 );
-
+	
+reg [31:0] x;
+reg [31:0] y;
+reg [31:0] z;
+	
+assign wire_x = x[7:0];
+assign wire_x = x[7:0];
+assign wire_x = x[7:0];
+	
 // wires
 wire [31:0] Fx, xn, xo;
 wire [31:0] Fy, yn, yo;
@@ -133,9 +128,9 @@ assign zn = z - {{3{zd[31]}}, zd[31:3]};
 always @(posedge clk)
 begin
 	if(!rst_n) begin
-        x <= x_init;
-        y <= y_init;
-        z <= z_init;
+        x <= 32'h12345678;
+        y <= 32'h87654321;
+        z <= 32'hABCDEF12;
     end else if (en[0]) begin
         x <= xn;
         y <= yn;
