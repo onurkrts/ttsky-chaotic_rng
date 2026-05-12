@@ -37,9 +37,12 @@ module tt_um_chaotic_rng (
     assign Uy = uio_in[6:4];
 
     // Fixed Z parameters
-    wire [3:0] Lz = 4'b1011;
-    wire [2:0] Uz = 3'b100;
-
+	wire [3:0] Lz;
+	wire [2:0] Uz;
+	
+	assign Lz = 4'b1011;
+	assign Uz = 3'b100;
+	
     rng_chaos_scroll u_rng_chaos_scroll (
         .clk(clk),
         .rst(rst),
