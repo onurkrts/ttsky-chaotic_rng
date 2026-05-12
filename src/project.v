@@ -115,9 +115,6 @@ wire [31:0] Fx, xn, xo;
 wire [31:0] Fy, yn, yo;                                                       
 wire [31:0] Fz, zn, zo, zd, zd1, zd2;                                                                                                           
 
-assign Lx = 4'b1011;                                                      
-assign Ux = 3'b100;
-
 func Fx_func(                                                     
     .F_i(x),                                                               
     .U_i(Ux),                                                              
