@@ -1,4 +1,3 @@
-```verilog
 `default_nettype none
 
 module tt_um_chaotic_rng (
@@ -185,4 +184,3 @@ assign out_6b = (Xhigh[5]) ? Xhigh : XU_X26;
 assign F_o    = {out_6b, F_i[25:0]};
 
 endmodule
-```
