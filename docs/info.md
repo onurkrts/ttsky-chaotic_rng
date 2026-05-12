@@ -16,5 +16,3 @@ The parameters of the chaotic function are partially programmable:
 
 - `Lx[3:0]` and `Ux[2:0]` are configured using `ui_in`
 - `Ly[3:0]` and `Uy[2:0]` are configured using `uio_in`
-
-The generated random output is obtained by XOR-combining the lower bits of the internal chaotic states:
