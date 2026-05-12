@@ -11,9 +11,6 @@ module tt_um_chaotic_rng (
     input  wire       rst_n
 );
 
-    wire rst;
-    assign rst = ~rst_n;
-
     // RNG outputs
     wire [31:0] x;
     wire [31:0] y;
@@ -21,7 +18,7 @@ module tt_um_chaotic_rng (
 
     // enable
     wire [3:0] rng_en;
-    assign rng_en = {3'b111, ena};
+    assign rng_en = ui_in[3:0];
 
     // Programmable parameters
     wire [3:0] Lx; //4'b1011
@@ -29,18 +26,13 @@ module tt_um_chaotic_rng (
     wire [3:0] Lz; //4'b1011
     wire [2:0] Ux, Uy, Uz; // 3'b100
 
-    assign Lx = ui_in[3:0];
-    assign Ly = ui_in[7:4];
-    assign Lz = uio_in[3:0];
-
-    // Fixed U parameters
-    assign Ux = 3'b100;
-    assign Uy = 3'b100;
-    assign Uz = 3'b100;
+	assign Lx = ui_in[7:4];
+	assign Ly = ui_in[3:0];
+	assign Lz = uio_in[7:4];
 
     rng_chaos_scroll u_rng_chaos_scroll (
         .clk(clk),
-        .rst(rst),
+		.rst_n(rst_n),
         .en(rng_en),
 
         .x_init(32'h12345678),
@@ -48,13 +40,8 @@ module tt_um_chaotic_rng (
         .z_init(32'hABCDEF12),
 
         .Lx(Lx),
-        .Ux(Ux),
-
         .Ly(Ly),
-        .Uy(Uy),
-
         .Lz(Lz),
-        .Uz(Uz),
 
         .x(x),
         .y(y),
@@ -90,17 +77,14 @@ endmodule
 
 module rng_chaos_scroll(
     input clk,
-    input rst,
+    input rst_n,
     input [3:0] en,
     input [31:0] x_init,
     input [31:0] y_init,
     input [31:0] z_init,
     input [3:0] Lx,
-    input [2:0] Ux,
     input [3:0] Ly,
-    input [2:0] Uy,
     input [3:0] Lz,
-    input [2:0] Uz,
     output reg [31:0] x,
     output reg [31:0] y,
     output reg [31:0] z
@@ -113,7 +97,7 @@ wire [31:0] Fz, zn, zo, zd, zd1, zd2;
 
 func Fx_func(
     .F_i(x),
-    .U_i(Ux),
+    .U_i(3'b100),
     .L_i(Lx),
     .F_o(Fx)
 );
@@ -122,7 +106,7 @@ assign xo = en[1] ? Fx : x;
 
 func Fy_func(
     .F_i(y),
-    .U_i(Uy),
+    .U_i(3'b100),
     .L_i(Ly),
     .F_o(Fy)
 );
@@ -131,7 +115,7 @@ assign yo = en[2] ? Fy : y;
 
 func Fz_func(
     .F_i(z),
-    .U_i(Uz),
+    .U_i(3'b100),
     .L_i(Lz),
     .F_o(Fz)
 );
@@ -148,7 +132,7 @@ assign zn = z - {{3{zd[31]}}, zd[31:3]};
 
 always @(posedge clk)
 begin
-    if(rst) begin
+	if(!rst_n) begin
         x <= x_init;
         y <= y_init;
         z <= z_init;
