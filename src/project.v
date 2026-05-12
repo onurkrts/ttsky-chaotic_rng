@@ -21,7 +21,7 @@ module tt_um_piecewise_chaos (
 
     // enable
     wire [3:0] rng_en;
-    assign rng_en = {3'b111, ena};
+	assign rng_en = {3'b111, ui_in[7]};
 
     // Programmable parameters
     wire [3:0] Lx;
@@ -64,7 +64,7 @@ module tt_um_piecewise_chaos (
     );
 
     // RNG output
-    assign uo_out = x[7:0] ^ y[7:0] ^ z[7:0];
+    assign uo_out = x[7:0] ;
 
     // debug outputs
     assign uio_out[0] = x[0];
