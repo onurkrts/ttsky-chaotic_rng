@@ -78,8 +78,8 @@ reg [31:0] y;
 reg [31:0] z;
 	
 assign wire_x = x[7:0];
-assign wire_x = x[7:0];
-assign wire_x = x[7:0];
+assign wire_y = x[7:0];
+assign wire_z = x[7:0];
 	
 // wires
 wire [31:0] Fx, xn, xo;
